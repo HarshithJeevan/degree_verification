@@ -1,0 +1,128 @@
+.verification-container {
+  padding: 24px;
+}
+
+.pipeline-centered {
+  max-width: 640px;
+  margin: 0 auto;
+  background: white;
+  padding: 32px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.stepper-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.stepper-item {
+  display: flex;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.stepper-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stepper-icon-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 16px;
+  min-width: 24px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.icon.completed { background-color: #c6f6d5; color: #2f855a; }
+.icon.warning { background-color: #feebc8; color: #c05621; }
+.icon.processing { 
+  background-color: #e2e8f0; color: #4a5568; 
+  animation: spin 1s linear infinite;
+}
+.icon.pending { background-color: #edf2f7; color: #a0aec0; }
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+.stepper-line {
+  flex: 1;
+  width: 2px;
+  background-color: #e2e8f0;
+  margin: 4px 0;
+  min-height: 20px;
+}
+
+.stepper-content {
+  padding-bottom: 24px;
+}
+
+.stepper-title {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.stepper-desc {
+  font-size: 0.875rem;
+  color: #4a5568;
+}
+
+.stepper-detail {
+  font-size: 0.75rem;
+  color: #c05621;
+  background: #fffaf0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+.verification-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 32px;
+  justify-content: center;
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.btn-primary {
+  background-color: #3182ce;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background-color: #edf2f7;
+  color: #4a5568;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+}

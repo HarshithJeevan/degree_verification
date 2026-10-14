@@ -1,0 +1,230 @@
+.comparison-container {
+  padding: 24px;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.panel h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: #2d3748;
+}
+
+.certificate-preview-card {
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  position: relative;
+}
+
+.cert-border {
+  border: 4px double #cbd5e0;
+  padding: 24px;
+  background: #fdfdfd;
+}
+
+.cert-content {
+  text-align: center;
+}
+
+.cert-header h3 { margin: 0; font-size: 1rem; color: #4a5568; }
+.cert-header h2 { margin: 4px 0 16px 0; font-size: 1.25rem; color: #2d3748; }
+
+.cert-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+  color: #1a365d;
+}
+
+.cert-body p { margin: 8px 0; }
+.cert-name { font-size: 1.5rem; font-weight: bold; font-family: serif; }
+.cert-degree { font-size: 1.25rem; font-weight: bold; }
+.cert-branch { font-size: 1.1rem; font-style: italic; }
+
+.cert-footer { margin-top: 32px; text-align: left; font-size: 0.875rem; }
+
+.cert-overlay-label {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  font-size: 0.7rem;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.reference-card {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.ref-row {
+  display: flex;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #edf2f7;
+  padding-bottom: 12px;
+}
+
+.ref-row:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.ref-label {
+  width: 120px;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.ref-val {
+  color: #2d3748;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 32px 0 16px 0;
+  color: #2d3748;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 8px;
+}
+
+.fields-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.field-comp-card {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.field-comp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.field-comp-header h4 {
+  margin: 0;
+  color: #2d3748;
+}
+
+.field-comp-body {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.field-col {
+  flex: 1;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+.field-col.expected { background: #f7fafc; border: 1px solid #e2e8f0; }
+.field-col.extracted { background: #fffaf0; border: 1px solid #feebc8; }
+
+.col-title { font-size: 0.75rem; color: #718096; margin-bottom: 4px; text-transform: uppercase; }
+.col-val { font-weight: 500; word-break: break-word; }
+
+.field-comp-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.conf-bar-bg {
+  flex: 1;
+  height: 6px;
+  background: #edf2f7;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.conf-bar-fill {
+  height: 100%;
+  background: #4299e1;
+}
+
+.conf-text {
+  font-size: 0.75rem;
+  color: #718096;
+}
+
+.field-reason {
+  margin-top: 8px;
+  font-size: 0.875rem;
+  color: #c53030;
+  background: #fff5f5;
+  padding: 6px;
+  border-radius: 4px;
+}
+
+.layout-panel {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.layout-note {
+  font-size: 0.875rem;
+  color: #718096;
+  font-style: italic;
+  margin-top: 0;
+}
+
+.layout-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.layout-table th, .layout-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.heatmap-placeholder {
+  margin-top: 24px;
+  border: 2px dashed #cbd5e0;
+  border-radius: 8px;
+  padding: 40px;
+  text-align: center;
+  color: #718096;
+  background: white;
+}
+
+.heatmap-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.page-actions {
+  margin-top: 32px;
+  display: flex;
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .comparison-grid { grid-template-columns: 1fr; }
+}

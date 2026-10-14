@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly Project Report – Week 1</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --primary: #1a365d;
+      --primary-light: #2b6cb0;
+      --accent: #3182ce;
+      --accent-light: #ebf8ff;
+      --success: #38a169;
+      --success-bg: #f0fff4;
+      --warning: #d69e2e;
+      --warning-bg: #fffff0;
+      --info: #4299e1;
+      --info-bg: #ebf8ff;
+      --gray-50: #f7fafc;
+      --gray-100: #edf2f7;
+      --gray-200: #e2e8f0;
+      --gray-300: #cbd5e0;
+      --gray-500: #718096;
+      --gray-600: #4a5568;
+      --gray-700: #2d3748;
+      --gray-800: #1a202c;
+      --danger: #e53e3e;
+      --danger-bg: #fff5f5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--gray-700);
+      line-height: 1.6;
+      background: #f0f4f8;
+      padding: 40px 20px;
+    }
+
+    .report-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    }
+
+    /* Header */
+    .report-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: white;
+      padding: 40px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .report-header::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .report-header::before {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      right: 20%;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .header-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .report-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      position: relative;
+    }
+
+    .report-subtitle {
+      font-size: 15px;
+      font-weight: 400;
+      opacity: 0.85;
+      margin-bottom: 20px;
+    }
+
+    .header-meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    .header-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .header-meta-item svg {
+      width: 16px;
+      height: 16px;
+      opacity: 0.8;
+    }
+
+    /* Content */
+    .report-body {
+      padding: 40px 48px;
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 36px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--gray-100);
+    }
+
+    .section-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .section-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .section-icon.blue { background: var(--accent-light); color: var(--accent); }
+    .section-icon.green { background: var(--success-bg); color: var(--success); }
+    .section-icon.yellow { background: var(--warning-bg); color: var(--warning); }
+    .section-icon.red { background: var(--danger-bg); color: var(--danger); }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--gray-800);
+    }
+
+    .section-number {
+      font-size: 12px;
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+
+    /* Task Table */
+    .task-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      overflow: hidden;
+      font-size: 14px;
+    }
+
+    .task-table thead {
+      background: var(--gray-50);
+    }
+
+    .task-table th {
+      text-align: left;
+      padding: 12px 16px;
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--gray-600);
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .task-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--gray-100);
+      color: var(--gray-700);
+    }
+
+    .task-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .task-table tbody tr:hover {
+      background: var(--gray-50);
+    }
+
+    /* Status Badges */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .status-badge.completed {
+      background: var(--success-bg);
+      color: var(--success);
+    }
+
+    .status-badge.in-progress {
+      background: var(--info-bg);
+      color: var(--info);
+    }
+
+    .status-badge.planned {
+      background: var(--gray-100);
+      color: var(--gray-500);
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .status-badge.completed .status-dot { background: var(--success); }
+    .status-badge.in-progress .status-dot { background: var(--info); }
+    .status-badge.planned .status-dot { background: var(--gray-400); }
+
+    /* Progress Bar */
+    .progress-summary {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .progress-card {
+      flex: 1;
+      min-width: 140px;
+      padding: 16px 20px;
+      border-radius: 10px;
+      border: 1px solid var(--gray-200);
+      text-align: center;
+    }
+
+    .progress-card .count {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .progress-card .label {
+      font-size: 12px;
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+
+    .progress-card.completed-card { background: var(--success-bg); border-color: #c6f6d5; }
+    .progress-card.completed-card .count { color: var(--success); }
+
+    .progress-card.in-progress-card { background: var(--info-bg); border-color: #bee3f8; }
+    .progress-card.in-progress-card .count { color: var(--info); }
+
+    .progress-card.planned-card { background: var(--gray-50); }
+    .progress-card.planned-card .count { color: var(--gray-500); }
+
+    .progress-bar-container {
+      background: var(--gray-100);
+      border-radius: 8px;
+      height: 10px;
+      overflow: hidden;
+      display: flex;
+      margin-bottom: 8px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      transition: width 0.3s;
+    }
+
+    .progress-bar-fill.completed-fill { background: var(--success); }
+    .progress-bar-fill.in-progress-fill { background: var(--info); }
+
+    /* Problem Cards */
+    .problem-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .problem-item {
+      padding: 14px 18px;
+      background: var(--gray-50);
+      border-radius: 10px;
+      border-left: 4px solid var(--warning);
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--gray-600);
+    }
+
+    /* Time Table */
+    .time-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      overflow: hidden;
+      font-size: 14px;
+    }
+
+    .time-table thead { background: var(--gray-50); }
+
+    .time-table th {
+      text-align: left;
+      padding: 12px 16px;
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--gray-600);
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .time-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .time-table tbody tr:last-child td { border-bottom: none; }
+    .time-table tbody tr:hover { background: var(--gray-50); }
+
+    .hours-badge {
+      display: inline-block;
+      background: var(--accent-light);
+      color: var(--accent);
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* Info Card */
+    .info-card {
+      padding: 18px 22px;
+      border-radius: 10px;
+      border: 1px solid var(--gray-200);
+      background: var(--gray-50);
+      font-size: 14px;
+    }
+
+    .info-card .info-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--gray-500);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .info-card .info-value {
+      font-weight: 500;
+      color: var(--gray-700);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* Test Results */
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .test-card {
+      padding: 16px;
+      border-radius: 10px;
+      border: 1px solid var(--gray-200);
+      text-align: center;
+    }
+
+    .test-card .test-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--gray-500);
+    }
+
+    .test-card .test-label {
+      font-size: 12px;
+      color: var(--gray-500);
+      margin-top: 4px;
+    }
+
+    /* Footer */
+    .report-footer {
+      background: var(--gray-50);
+      padding: 24px 48px;
+      border-top: 1px solid var(--gray-200);
+      font-size: 12px;
+      color: var(--gray-500);
+      text-align: center;
+    }
+
+    /* Focus highlight for frontend tasks */
+    .highlight-row {
+      background: #ebf8ff !important;
+    }
+
+    .frontend-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #e9d8fd;
+      color: #6b46c1;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-left: 6px;
+    }
+
+    .week-focus-banner {
+      background: linear-gradient(135deg, #ebf8ff, #e9d8fd);
+      border: 1px solid #bee3f8;
+      border-radius: 10px;
+      padding: 16px 22px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .week-focus-banner .focus-icon {
+      font-size: 28px;
+    }
+
+    .week-focus-banner .focus-text h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 2px;
+    }
+
+    .week-focus-banner .focus-text p {
+      font-size: 13px;
+      color: var(--gray-600);
+    }
+
+    /* Discussion Points */
+    .discussion-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .discussion-points li {
+      padding: 6px 0;
+      font-size: 14px;
+      color: var(--gray-600);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .discussion-points li::before {
+      content: '▸';
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      .report-container {
+        box-shadow: none;
+        border-radius: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="report-container">
+
+  <!-- ═══════════ HEADER ═══════════ -->
+  <div class="report-header">
+    <div class="header-badge">Weekly Report</div>
+    <h1 class="report-title">Weekly Project Report — Web-Based Certificate Scanning and Error Detection System</h1>
+    <p class="report-subtitle">Degree Certificate Verification Platform</p>
+    <div class="header-meta">
+      <div class="header-meta-item">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        Week 1
+      </div>
+      <div class="header-meta-item">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        25 Aug – 31 Aug 2026
+      </div>
+      <div class="header-meta-item">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        5 Team Members
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ BODY ═══════════ -->
+  <div class="report-body">
+
+    <!-- Week Focus Banner -->
+    <div class="week-focus-banner">
+      <div class="focus-icon">🎯</div>
+      <div class="focus-text">
+        <h4>This Week's Focus: Frontend Prototype Completion</h4>
+        <p>Successfully completed a full UI prototype using HTML/CSS/JS with mock data. The application workflow is now visualized, pending backend integration.</p>
+      </div>
+    </div>
+
+    <!-- ── 1. Task Progress ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon blue">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+        </div>
+        <div>
+          <div class="section-number">Section 1</div>
+          <div class="section-title">Tasks Completed, In Progress &amp; Planned</div>
+        </div>
+      </div>
+
+      <!-- Progress Cards -->
+      <div class="progress-summary">
+        <div class="progress-card completed-card">
+          <div class="count">12</div>
+          <div class="label">Completed</div>
+        </div>
+        <div class="progress-card in-progress-card">
+          <div class="count">4</div>
+          <div class="label">In Progress</div>
+        </div>
+        <div class="progress-card planned-card">
+          <div class="count">9</div>
+          <div class="label">Planned</div>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill completed-fill" style="width: 48%"></div>
+        <div class="progress-bar-fill in-progress-fill" style="width: 16%"></div>
+      </div>
+
+      <table class="task-table">
+        <thead>
+          <tr>
+            <th style="width:50%">Task</th>
+            <th style="width:25%">Status</th>
+            <th style="width:25%">Progress</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Project requirements and problem understanding</td>
+            <td><span class="status-badge completed"><span class="status-dot"></span>Completed</span></td>
+            <td>Completed</td>
+          </tr>
+          <tr>
+            <td>Initial analysis of scanned certificate verification</td>
+            <td><span class="status-badge completed"><span class="status-dot"></span>Completed</span></td>
+            <td>Completed</td>
+          </tr>
+          <tr class="highlight-row">
+            <td>Frontend project setup (HTML/CSS/JS SPA architecture) <span class="frontend-tag">🖥 Frontend</span></td>
+            <td><span class="status-badge completed"><span class="status-dot"></span>Completed</span></td>
+            <td>Completed</td>
+          </tr>
+          <tr class="highlight-row">
+            <td>Dashboard page with navigation and stats UI <span class="frontend-tag">🖥 Frontend</span></td>
+            <td><span class="status-badge completed"><span class="status-dot"></span>Completed</span></td>
+            <td>Completed</td>
+          </tr>
+          <tr class="highlight-row">
+            <td>Certificate upload page with drag-and-drop interface <span class="frontend-tag">🖥 Frontend</span></td>
+            <td><span class="status-badge completed"><span class="status-dot"></span>Completed</span></td>
+            <td>Completed</td>
+          </tr>
+          <tr class="highlight-row">
+            <td>Verification progress/pipeline UI <span class="frontend-tag">🖥 Frontend</span></td>
+            <td><span class="status-badge completed"><span class="status-dot"></span>Completed</span></td>
+            <td>Completed</td>
+          </tr>
+          <tr class="highlight-row">
+            <td>Certificate comparison viewer layout <span class="frontend-tag">🖥 Frontend</span></td>
+            <td><span class="status-badge completed"><span class="status-dot"></span>Completed</span></td>
+            <td>Completed</td>
+          </tr>
+          <tr class="highlight-row">
+            <td>OCR/field results display page <span class="frontend-tag">🖥 Frontend</span></td>
+            <td><span class="status-badge completed"><span class="status-dot"></span>Completed</span></td>
+            <td>Completed</td>
+          </tr>
+          <tr class="highlight-row">
+            <td>Verification result page (Verified / Requires Review) <span class="frontend-tag">🖥 Frontend</span></td>
+            <td><span class="status-badge completed"><span class="status-dot"></span>Completed</span></td>
+            <td>Completed</td>
+          </tr>
+          <tr class="highlight-row">
+            <td>Human review interface with approve/reject/review controls <span class="frontend-tag">🖥 Frontend</span></td>
+            <td><span class="status-badge completed"><span class="status-dot"></span>Completed</span></td>
+            <td>Completed</td>
+          </tr>
+          <tr class="highlight-row">
+            <td>Mock data layer for frontend testing <span class="frontend-tag">🖥 Frontend</span></td>
+            <td><span class="status-badge completed"><span class="status-dot"></span>Completed</span></td>
+            <td>Completed</td>
+          </tr>
+          <tr class="highlight-row">
+            <td>API service layer structured for FastAPI integration <span class="frontend-tag">🖥 Frontend</span></td>
+            <td><span class="status-badge completed"><span class="status-dot"></span>Completed</span></td>
+            <td>Completed</td>
+          </tr>
+
+          <tr>
+            <td>Evaluation of visual/pixel-based certificate comparison</td>
+            <td><span class="status-badge in-progress"><span class="status-dot"></span>In Progress</span></td>
+            <td>In progress</td>
+          </tr>
+          <tr>
+            <td>Research on image alignment and preprocessing</td>
+            <td><span class="status-badge in-progress"><span class="status-dot"></span>In Progress</span></td>
+            <td>In progress</td>
+          </tr>
+          <tr>
+            <td>Evaluation of OCR for Hindi and English text</td>
+            <td><span class="status-badge in-progress"><span class="status-dot"></span>In Progress</span></td>
+            <td>In progress</td>
+          </tr>
+          <tr>
+            <td>Frontend-backend integration planning</td>
+            <td><span class="status-badge in-progress"><span class="status-dot"></span>In Progress</span></td>
+            <td>In progress</td>
+          </tr>
+
+          <tr>
+            <td>FastAPI backend development</td>
+            <td><span class="status-badge planned"><span class="status-dot"></span>Planned</span></td>
+            <td>Planned</td>
+          </tr>
+          <tr>
+            <td>OCR pipeline implementation (Tesseract)</td>
+            <td><span class="status-badge planned"><span class="status-dot"></span>Planned</span></td>
+            <td>Planned</td>
+          </tr>
+          <tr>
+            <td>Image alignment with OpenCV</td>
+            <td><span class="status-badge planned"><span class="status-dot"></span>Planned</span></td>
+            <td>Planned</td>
+          </tr>
+          <tr>
+            <td>Student database / SQLite roster lookup</td>
+            <td><span class="status-badge planned"><span class="status-dot"></span>Planned</span></td>
+            <td>Planned</td>
+          </tr>
+          <tr>
+            <td>RapidFuzz field matching implementation</td>
+            <td><span class="status-badge planned"><span class="status-dot"></span>Planned</span></td>
+            <td>Planned</td>
+          </tr>
+          <tr>
+            <td>Prototype for scanned-certificate comparison</td>
+            <td><span class="status-badge planned"><span class="status-dot"></span>Planned</span></td>
+            <td>Planned</td>
+          </tr>
+          <tr>
+            <td>Difference-map and heatmap generation</td>
+            <td><span class="status-badge planned"><span class="status-dot"></span>Planned</span></td>
+            <td>Planned</td>
+          </tr>
+          <tr>
+            <td>Backend integration with frontend API layer</td>
+            <td><span class="status-badge planned"><span class="status-dot"></span>Planned</span></td>
+            <td>Planned</td>
+          </tr>
+          <tr>
+            <td>End-to-end testing</td>
+            <td><span class="status-badge planned"><span class="status-dot"></span>Planned</span></td>
+            <td>Planned</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ── 2. Problems ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon yellow">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        </div>
+        <div>
+          <div class="section-number">Section 2</div>
+          <div class="section-title">Problems &amp; Challenges</div>
+        </div>
+      </div>
+      <ul class="problem-list">
+        <li class="problem-item">Hindi and English text are present in the certificates, making text-based OCR verification more challenging.</li>
+        <li class="problem-item">Scanned documents may contain rotation, translation, scaling, uneven lighting, blur, compression artifacts, and scanner noise.</li>
+        <li class="problem-item">Direct pixel-by-pixel comparison can produce false differences unless the scanned document is first aligned and normalized.</li>
+        <li class="problem-item">The certificate verification process has a zero-tolerance requirement, so automated detection should assist a human reviewer rather than be treated as the final authority.</li>
+        <li class="problem-item">Further investigation is required to distinguish genuine printing/layout errors from differences caused by scanning conditions.</li>
+        <li class="problem-item">Frontend prototype uses mock data; real verification requires backend implementation.</li>
+        <li class="problem-item">Ensuring seamless integration between the React.js frontend and FastAPI backend when backend is ready.</li>
+      </ul>
+    </div>
+
+    <!-- ── 3. Time Spent ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon green">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div>
+          <div class="section-number">Section 3</div>
+          <div class="section-title">Time Spent by Team Members</div>
+        </div>
+      </div>
+      <table class="time-table">
+        <thead>
+          <tr>
+            <th>Team Member</th>
+            <th>Task</th>
+            <th>Hours</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Member 1</td>
+            <td>Project requirement analysis</td>
+            <td><span class="hours-badge">1.5 hrs</span></td>
+          </tr>
+          <tr>
+            <td>Member 2</td>
+            <td>OCR / Hindi text research</td>
+            <td><span class="hours-badge">2 hrs</span></td>
+          </tr>
+          <tr>
+            <td>Member 3</td>
+            <td>Image-processing research</td>
+            <td><span class="hours-badge">1 hr</span></td>
+          </tr>
+          <tr>
+            <td>Member 4</td>
+            <td>Frontend UI development (complete prototype: dashboard, upload, verification, comparison, results, review pages)</td>
+            <td><span class="hours-badge">6 hrs</span></td>
+          </tr>
+          <tr>
+            <td>Member 5</td>
+            <td>Backend / system research</td>
+            <td><span class="hours-badge">1 hr</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ── 4. Last Meeting ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon blue">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+        </div>
+        <div>
+          <div class="section-number">Section 4</div>
+          <div class="section-title">Last Meeting with the PoC</div>
+        </div>
+      </div>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-label">📅 Date</div>
+          <div class="info-value">31 – Aug – 2026</div>
+        </div>
+        <div class="info-card">
+          <div class="info-label">📍 Type</div>
+          <div class="info-value">In-person / Online</div>
+        </div>
+      </div>
+      <div class="info-card" style="margin-top: 14px;">
+        <div class="info-label">💬 Discussion Points</div>
+        <ul class="discussion-points">
+          <li>About Hindi and English text in certificates</li>
+          <li>Zero error tolerance requirement</li>
+          <li>Verification of documents</li>
+          <li>Heavily time consuming manual process</li>
+          <li>Human assisted verification workflow</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── 5. Current Build ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon green">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+        </div>
+        <div>
+          <div class="section-number">Section 5</div>
+          <div class="section-title">Date of Current Build</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-label">Build Status</div>
+        <div class="info-value">Frontend prototype build completed — September 2026. Vanilla HTML/CSS/JS SPA with mock data. Backend integration pending.</div>
+      </div>
+    </div>
+
+    <!-- ── 6. Test Results ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon red">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div>
+          <div class="section-number">Section 6</div>
+          <div class="section-title">Results of Tests on the Build</div>
+        </div>
+      </div>
+      <div class="test-grid">
+        <div class="test-card">
+          <div class="test-value">0</div>
+          <div class="test-label">Total Tests</div>
+        </div>
+        <div class="test-card">
+          <div class="test-value" style="color: var(--success)">0</div>
+          <div class="test-label">Successful</div>
+        </div>
+        <div class="test-card">
+          <div class="test-value" style="color: var(--danger)">0</div>
+          <div class="test-label">Unsuccessful</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 7. QA Defects ── -->
+    <div class="section" style="margin-bottom: 0;">
+      <div class="section-header">
+        <div class="section-icon yellow">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div>
+          <div class="section-number">Section 7</div>
+          <div class="section-title">Defects Found in QA Process</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-value">No formal QA testing has been conducted yet. Frontend prototype has been manually verified for UI functionality. Automated testing will begin with backend integration.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <div class="report-footer">
+    <p>Weekly Project Report — Degree Certificate Verification System — Week 1 — Generated: September 2026</p>
+  </div>
+
+</div>
+
+</body>
+</html>
